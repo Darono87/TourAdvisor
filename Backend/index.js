@@ -8,9 +8,10 @@ application.use(cors());
 application.use(morgan('short'));
 application.use(bodyParser.json());
 
-application.get('/register', (req, res)=>{
+application.post('/register', (req, res)=>{
   res.send({
-    message: 'Backend test',
+    message: 'Backend has received your data. Your client email is: ' +
+    req.body.email,
   });
 });
 
