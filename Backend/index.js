@@ -1,9 +1,17 @@
-var express = require("express");
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
-var application = express();
+const application = express();
+application.use(cors());
+application.use(morgan('short'));
+application.use(bodyParser.json());
 
-application.get("/",(req,res)=>{
-    res.send("Backend test");
+application.get('/register', (req, res)=>{
+  res.send({
+    message: 'Backend test',
+  });
 });
 
 application.listen(3000);
