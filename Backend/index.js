@@ -3,22 +3,17 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const DB = require('./src/connection');
+const {DB} = require('./src/models');
+const router = require('./src/router');
 
 const application = express();
 application.use(cors());
 application.use(morgan('short'));
 application.use(bodyParser.json());
-
-application.post('/register', (req, res)=>{
-  res.send({
-    message: 'Backend has received your data. Your client email is: ' +
-    req.body.email,
-  });
-});
+application.use(router);
 
 DB
-    .authenticate()
+    .sync({force: true})
     .then(() => {
       console.log('Connection has been established successfully.');
     })
