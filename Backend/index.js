@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const application = express();
 application.use(cors());
@@ -15,4 +16,4 @@ application.post('/register', (req, res)=>{
   });
 });
 
-application.listen(3000);
+application.listen(process.env.PORT || '3001');

@@ -9,13 +9,15 @@
 </template>
 
 <script>
+import config from "../config"
+
 export default {
   name: 'MapContainer',
   mounted() {
 
     let callbackName = "googleLoaded";
     let googleMaps = document.createElement('script')
-    googleMaps.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=AIzaSyB_md0MiltqnpcDC18v1avPsS0zhDXsUj4&callback=${callbackName}`);
+    googleMaps.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${config.googleKey}&callback=${callbackName}`);
     googleMaps.innerHTML = "google.maps.Map(document.getElementById('map'), {zoom: 4, center: {lat:0,long:0}});";
     document.head.appendChild(googleMaps);
 

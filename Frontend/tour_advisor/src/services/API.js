@@ -1,7 +1,8 @@
 import axios from "axios"
+import config from "../config"
 
 export default ()=>{
   return axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: `http://localhost:${config.backendPort}/`
   });
 }
