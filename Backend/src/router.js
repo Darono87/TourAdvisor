@@ -1,8 +1,10 @@
 const express = require("express");
-const {user} = require('./models')
+const {user} = require('./models');
+const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
 
-router.post('/register', async (req, res)=>{
+
+router.post('/register', passwordValidate, async (req, res)=>{
   try{
     let newUser = await user.create(req.body);
     res.send({
