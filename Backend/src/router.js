@@ -6,14 +6,28 @@ router.post('/register', async (req, res)=>{
   try{
     let newUser = await user.create(req.body);
     res.send({
-      message: 'Backend has received your data. Your client email is: ' +
+      message: 'You have been registered. Your client email is: ' +
       req.body.email,
       userData: newUser
     });
   }catch(e){
-    res.status(400).send({
-      message: 'Something has gone wrong'
-    });
+    switch(e.name){
+      case 'SequelizeValidationError':
+        res.status(400).send({
+          err: 'VAL1'
+        });
+        break;
+      case 'SequelizeUniqueConstraintError':
+        res.status(400).send({
+          err: 'MAIL1'
+        });
+        break;
+      default:
+        res.status(500).send({
+          err: 'UN'
+        });
+        break;
+    }
   }
 });
 

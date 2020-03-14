@@ -1,9 +1,20 @@
 const User = (DB, Sequalize) => DB.define('user',{
   email: {
     type: Sequalize.STRING,
-    unique: true
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
-  password: Sequalize.STRING
+  password: {
+    type: Sequalize.STRING,
+    allowNull: false,
+    validate: {
+      notNull: true,
+      notEmpty: true
+    }
+  }
 })
 
 module.exports = User;

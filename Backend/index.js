@@ -13,7 +13,7 @@ application.use(bodyParser.json());
 application.use(router);
 
 DB
-    .sync({force: true})
+    .sync()
     .then(() => {
       console.log('Connection has been established successfully.');
     })
