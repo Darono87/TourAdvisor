@@ -6,7 +6,7 @@
     <v-spacer></v-spacer>
     <router-link to = "/register">
       <v-btn class="nav-main-button" outlined> 
-        Register
+        Sign up
       </v-btn>
     </router-link>
     <router-link to = "/map">

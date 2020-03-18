@@ -1,13 +1,22 @@
 <template>
- <div>
-   <h2>Follow the steps below to start the journey ...</h2>
-   <input type = 'text' v-model='email' name = 'email' id = 'register-email' placeholder='email'>
-   <br>
-   <input type = 'password' v-model='password' name = 'password' id = 'register-password' placeholder='password'>
-   <br>
-   <input @click='register' type = 'submit' id='register-submit' value='Register'>
-   <div>{{serverText}}</div>
- </div>
+ <v-card class="sign-up-card" elevation-12>
+  
+  <v-card-title>Sign up</v-card-title>
+  <v-card-subtitle>Follow the steps below to start the journey ...</v-card-subtitle>
+
+  <v-text-field type = 'text' v-model='email' label="E-Mail">
+
+  </v-text-field>
+  <v-text-field type = 'password' v-model='password' label="Password">
+
+  </v-text-field>
+  <v-btn @click='register'> 
+    Sign up
+  </v-btn>
+
+  <div>{{serverText}}</div>
+
+ </v-card>
 </template>
 
 <script>
@@ -51,11 +60,8 @@ export default {
 </script>
 
 <style scoped>
-input{
-  margin-top: 10px;
-  margin-bottom: 10px;
+.sign-up-card{
+  padding: 20px;
 }
-form{
-  text-align: center;
-}
+
 </style>
