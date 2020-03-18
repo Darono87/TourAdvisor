@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <navbar/>
     <router-view/>
   </div>
 </template>
@@ -9,9 +10,10 @@ import RegisterTab from './components/RegisterTab.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import MainMap from './components/MainMap.vue'
-
+import Navbar from './components/Navbar.vue'
 
 Vue.use(VueRouter);
+
 
 const routes = [
   { path: '/register', component: RegisterTab },
@@ -25,6 +27,9 @@ const router = new VueRouter({
 
 export default {
   name: 'App',
+  components: {
+    Navbar
+  },
   router
 }
 
@@ -32,10 +37,6 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  max-width:800px;
-  margin: auto;
-  margin-top: 60px;
+  
 }
 </style>
