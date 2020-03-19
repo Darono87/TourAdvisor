@@ -10,9 +10,11 @@
   <v-text-field type = 'password' v-model='password' label="Password">
 
   </v-text-field>
-  <v-btn @click='register'> 
-    Sign up
-  </v-btn>
+  <v-row justify = "center">
+    <v-btn large color="light-green" class="sign-up-button" @click='register'> 
+      Sign up
+    </v-btn>
+  </v-row>
 
   <div>{{serverText}}</div>
 
@@ -62,6 +64,16 @@ export default {
 <style scoped>
 .sign-up-card{
   padding: 20px;
+}
+.sign-up-button{
+  margin-bottom: 10px;
+}
+.v-card__title{
+  font-size: 1.6em;
+  margin-bottom: 10px;
+}
+.v-card__subtitle{
+  font-size: 1.1em;
 }
 
 </style>

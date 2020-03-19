@@ -1,9 +1,14 @@
 <template>
   <v-app id="app">
     <navbar/>
-    <main color="grey lighten-1">
-      <router-view v-bind:map-ready="this.googleLoaded"/>
-    </main>
+    <v-container class = "app-content" color="grey lighten-1">
+      <v-row no-gutters justify="center">
+        <v-col cols="6">
+          <router-view v-bind:map-ready="this.googleLoaded"/>
+        </v-col>
+      </v-row>
+      
+    </v-container>
   </v-app>
 </template>
 
@@ -59,9 +64,7 @@ export default {
 #app {
   font-family: 'Montserrat', sans-serif;
 }
-main{
-  max-width: 800px;
-  margin: auto;
+.app-content{
   margin-top: 100px;
 }
 </style>

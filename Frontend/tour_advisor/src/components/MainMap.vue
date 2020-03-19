@@ -36,8 +36,6 @@ export default {
 
 <style scoped>
 #map{
-  width: 800px;
   height: 400px;
-  margin-bottom: 100px;
 }
 </style>
