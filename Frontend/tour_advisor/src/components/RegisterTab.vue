@@ -1,24 +1,26 @@
 <template>
- <v-card class="sign-up-card" elevation-12>
-  
-  <v-card-title>Sign up</v-card-title>
-  <v-card-subtitle>Follow the steps below to start the journey ...</v-card-subtitle>
+<v-row class = "sign-up-row" justify = "center">
+  <v-card class="sign-up-card" elevation-12>
+    
+    <v-card-title>Sign up</v-card-title>
+    <v-card-subtitle>Follow the steps below to start the journey ...</v-card-subtitle>
 
-  <v-text-field type = 'text' v-model='email' label="E-Mail">
+    <v-text-field type = 'text' v-model='email' label="E-Mail">
 
-  </v-text-field>
-  <v-text-field type = 'password' v-model='password' label="Password">
+    </v-text-field>
+    <v-text-field type = 'password' v-model='password' label="Password">
 
-  </v-text-field>
-  <v-row justify = "center">
-    <v-btn large color="light-green" class="sign-up-button" @click='register'> 
-      Sign up
-    </v-btn>
-  </v-row>
+    </v-text-field>
+    <v-row justify = "center">
+      <v-btn large color="light-green" class="sign-up-button" @click='register'> 
+        Sign up
+      </v-btn>
+    </v-row>
 
-  <div>{{serverText}}</div>
+    <div>{{serverText}}</div>
 
- </v-card>
+  </v-card>
+</v-row>
 </template>
 
 <script>
@@ -62,15 +64,18 @@ export default {
 </script>
 
 <style scoped>
+.sign-up.row{
+  margin-top: 16px;
+}
 .sign-up-card{
-  padding: 20px;
+  padding: 16px;
 }
 .sign-up-button{
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .v-card__title{
   font-size: 1.6em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .v-card__subtitle{
   font-size: 1.1em;

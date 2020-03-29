@@ -1,10 +1,11 @@
 <template>
-  <section>
-    <h3>Map Container</h3>
-    <div id = "map">
-      
-    </div>
-  </section>
+  <v-row tag="section" justify="center">
+    <v-card>
+      <v-card-title justify="center">Map Container</v-card-title>
+      <div id = "map">
+      </div>
+    </v-card>
+  </v-row>
   
 </template>
 
@@ -40,6 +41,7 @@ export default {
 
 <style scoped>
 #map{
+  width: 800px;
   height: 400px;
 }
 </style>

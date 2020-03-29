@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar fixed class="nav-main" color="light-green darken-1">
+  <v-app-bar app class="nav-main" color="light-green darken-1">
     <v-toolbar-title class="nav-main-title">
       <span class = "brown--text text--darken-1">Tour</span><span class = "green--text text--darken-2">Advisor</span>
     </v-toolbar-title>

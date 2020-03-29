@@ -1,14 +1,16 @@
 <template>
   <v-app id="app">
     <navbar/>
-    <v-container class = "app-content" color="grey lighten-1">
-      <v-row no-gutters justify="center">
-        <v-col cols="6">
-          <router-view v-bind:map-ready="this.googleLoaded"/>
-        </v-col>
-      </v-row>
-      
-    </v-container>
+    <v-content class="grey lighten-5">
+
+      <v-container fluid>
+        <router-view v-bind:map-ready="this.googleLoaded"></router-view>
+      </v-container>
+
+    </v-content>
+    <v-footer app>
+      Made by Vith
+    </v-footer>
   </v-app>
 </template>
 
@@ -65,7 +67,8 @@ export default {
 #app {
   font-family: 'Montserrat', sans-serif;
 }
-.app-content{
-  margin-top: 100px;
+.v-content{
+  align-items: center;
 }
+
 </style>
