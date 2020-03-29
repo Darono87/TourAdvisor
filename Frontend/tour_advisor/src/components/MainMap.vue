@@ -12,24 +12,28 @@
 
 export default {
   name: 'MapContainer',
+  data(){
+    return {
+      map: null
+    };
+  },
   props: {
-    mapReady: Boolean
+    mapReady: Promise
   },
   methods: {
     createMap(){
-      if(this.mapReady){
-        const map = new google.maps.Map(document.querySelector("#map"),{
-          center: {lat: 0, lng: 0},
-          zoom: 3
-        });
-      }
-      else{
-        setTimeout(this.createMap,500);
-      }
+      
+      this.map = new google.maps.Map(document.querySelector("#map"),{
+        center: {lat: 0, lng: 0},
+        zoom: 3
+      });
+
     }
   },
   mounted() {
-    this.createMap();
+    this.mapReady.then(()=>{
+      this.createMap();
+    });
   }
 }
 </script>

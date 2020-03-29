@@ -34,23 +34,24 @@ const router = new VueRouter({
 
 import config from "./config"
 
+const callbackName = "googleLoaded";
+const googlePromise = new Promise((resolve,reject)=>{
+  window[callbackName] = resolve;
+});
+
 export default {
   name: 'App',
   data(){
     return{
-      googleLoaded: false
+      googleLoaded: googlePromise
     }
   },
   mounted() {
-    let callbackName = "googleLoaded";
-    let googleMaps = document.createElement('script')
+
+    let googleMaps = document.createElement('script');
     googleMaps.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${config.googleKey}&callback=${callbackName}`);
-    googleMaps.innerHTML = "google.maps.Map(document.getElementById('map'), {zoom: 4, center: {lat:0,long:0}});";
     document.head.appendChild(googleMaps);
 
-    window[callbackName] = ()=>{
-      this.googleLoaded = true;
-    }
   },
   components: {
     Navbar
