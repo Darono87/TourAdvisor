@@ -20,13 +20,17 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 import MainMap from './components/MainMap.vue'
 import Navbar from './components/Navbar.vue'
+import LoginTab from './components/LoginTab.vue'
+import Welcome from './components/Welcome.vue'
 
 Vue.use(VueRouter);
 
 
 const routes = [
   { path: '/register', component: RegisterTab },
-  { path: '/map', component: MainMap}
+  { path: '/map', component: MainMap},
+  { path: '/login', component: LoginTab},
+  { path: '/', component: Welcome}
 ]
 
 const router = new VueRouter({

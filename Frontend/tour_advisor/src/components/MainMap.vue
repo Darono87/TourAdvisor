@@ -1,7 +1,7 @@
 <template>
   <v-row tag="section" justify="center">
     <v-card>
-      <v-card-title justify="center">Map Container</v-card-title>
+      <v-card-title class = "headline" justify="center">Map Container</v-card-title>
       <div id = "map">
       </div>
     </v-card>

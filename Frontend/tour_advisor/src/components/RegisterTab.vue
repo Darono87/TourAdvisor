@@ -2,8 +2,8 @@
 <v-row class = "sign-up-row" justify = "center">
   <v-card class="sign-up-card" elevation-12>
     
-    <v-card-title>Sign up</v-card-title>
-    <v-card-subtitle>Follow the steps below to start the journey ...</v-card-subtitle>
+    <v-card-title class = "headline">Sign up</v-card-title>
+    <v-card-subtitle class = "subtitle">Follow the steps below to start the journey ...</v-card-subtitle>
 
     <v-text-field type = 'text' v-model='email' label="E-Mail">
 
@@ -72,13 +72,6 @@ export default {
 }
 .sign-up-button{
   margin-bottom: 8px;
-}
-.v-card__title{
-  font-size: 1.6em;
-  margin-bottom: 8px;
-}
-.v-card__subtitle{
-  font-size: 1.1em;
 }
 
 </style>

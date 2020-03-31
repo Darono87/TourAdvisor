@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app class="nav-main" color="light-green darken-1">
     <router-link to = "/">
-      <v-toolbar-title class="nav-main-title title">
+      <v-toolbar-title class="nav-main-title headline">
         <span class = "brown--text text--darken-1">Tour</span><span class = "green--text text--darken-2">Advisor</span>
       </v-toolbar-title>
     </router-link>
@@ -18,7 +18,7 @@
         </v-btn>
       </router-link>
       <router-link to = "/login">
-        <v-btn class="nav-main-button" tile color="light-green lighten-1"> 
+        <v-btn class="nav-main-button" tile color="light-green lighten-2"> 
           Login
         </v-btn>
       </router-link>
