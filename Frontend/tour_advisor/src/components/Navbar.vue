@@ -1,19 +1,28 @@
 <template>
   <v-app-bar app class="nav-main" color="light-green darken-1">
-    <v-toolbar-title class="nav-main-title">
-      <span class = "brown--text text--darken-1">Tour</span><span class = "green--text text--darken-2">Advisor</span>
-    </v-toolbar-title>
+    <router-link to = "/">
+      <v-toolbar-title class="nav-main-title title">
+        <span class = "brown--text text--darken-1">Tour</span><span class = "green--text text--darken-2">Advisor</span>
+      </v-toolbar-title>
+    </router-link>
     <v-spacer></v-spacer>
-    <router-link to = "/register">
-      <v-btn class="nav-main-button" outlined> 
-        Sign up
-      </v-btn>
-    </router-link>
-    <router-link to = "/map">
-      <v-btn class="nav-main-button" outlined> 
-        Map
-      </v-btn>
-    </router-link>
+    <v-toolbar-items class = "align-center">
+      <router-link to = "/map">
+        <v-btn class="nav-main-button"  color="light-green"> 
+          Map
+        </v-btn>
+      </router-link>
+      <router-link to = "/register">
+        <v-btn class="nav-main-button"  color="light-green"> 
+          Sign up
+        </v-btn>
+      </router-link>
+      <router-link to = "/login">
+        <v-btn class="nav-main-button" tile color="light-green lighten-1"> 
+          Login
+        </v-btn>
+      </router-link>
+    </v-toolbar-items>
   </v-app-bar>
 </template>
 
@@ -24,13 +33,11 @@ export default {
 </script>
 
 <style scoped>
- .nav-main{
-    font-family: "Sen";
-  }
-  .nav-main-title{
-    font-size: 1.5em;
-  }
-  .nav-main-button{
-    margin:5px;
-  }
+.router-link-active{
+  outline: none;
+  text-decoration: none;
+}
+.nav-main-button{
+  margin:4px;
+}
 </style>
