@@ -1,8 +1,7 @@
 const DB = require('./connection');
-const path = require('path');
 
 let models = {};
-const userModel = DB.import(path.join(__dirname,'./user'));
+const userModel = require("./user")(DB);
 models[userModel.name] = userModel;
 models['DB'] = DB;
 

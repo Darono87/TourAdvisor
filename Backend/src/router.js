@@ -35,6 +35,7 @@ router.post('/register', passwordValidate, async (req, res)=>{
 
 router.post('/login',async (req,res)=>{
 
+  console.log(req.body);
   res.send("taken");
 
 });
