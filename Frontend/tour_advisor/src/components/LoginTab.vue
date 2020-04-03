@@ -11,7 +11,7 @@
 
       </v-text-field>
       <v-row justify = "center">
-        <v-btn large class = "mt-2" color="light-green"> 
+        <v-btn large class = "mt-2" color="light-green" @click="login"> 
           Login
         </v-btn>
       </v-row>
@@ -21,8 +21,27 @@
 </template>
 
 <script>
+import API from '../services/AuthenticationService';
+
 export default {
-  name: 'LoginTab'
+  name: 'LoginTab',
+  data(){
+    return{
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    async login(){
+
+      let response = await API.login({
+        password: this.password, email: this.email
+        });
+      
+      console.log(response);
+
+    }
+  }
 }
 </script>
 
