@@ -1,19 +1,19 @@
 const express = require("express");
-const {user} = require('./models');
+const { user } = require('./models');
 const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
 
 
-router.post('/register', passwordValidate, async (req, res)=>{
-  try{
+router.post('/register', passwordValidate, async (req, res) => {
+  try {
     let newUser = await user.create(req.body);
     res.send({
       message: 'You have been registered. Your client email is: ' +
-      req.body.email,
+        req.body.email,
       userData: newUser
     });
-  }catch(e){
-    switch(e.name){
+  } catch (e) {
+    switch (e.name) {
       case 'SequelizeValidationError':
         res.status(400).send({
           err: 'VAL1'
@@ -33,11 +33,22 @@ router.post('/register', passwordValidate, async (req, res)=>{
   }
 });
 
-router.post('/login',async (req,res)=>{
+router.post('/login', async (req, res) => {
+  try {
+    let foundUser = await user.findOne({
+      where: {
+        email: req.body.email
+      }
+    });
+    if (!foundUser || await !foundUser.comparePasswords(req.body.password))
+      throw new Error("message");
 
-  console.log(req.body);
-  res.send("taken");
+    res.send(foundUser);
 
+  } catch (e) {
+
+    res.status(400).send(e);
+  }
 });
 
 module.exports = router;

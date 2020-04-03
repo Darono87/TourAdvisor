@@ -33,13 +33,18 @@ export default {
   },
   methods: {
     async login(){
+      try{
 
-      let response = await API.login({
-        password: this.password, email: this.email
+        let response = await API.login({
+          password: this.password, email: this.email
         });
-      
-      console.log(response);
+        console.log(response);
 
+      }catch(e){
+      
+        console.log(e);
+
+      }
     }
   }
 }

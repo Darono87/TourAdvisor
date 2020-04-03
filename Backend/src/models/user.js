@@ -10,6 +10,9 @@ const User = (DB) => {
       instance.dataValues.password  =
        await bcrypt.hash(instance.dataValues.password,salt);
     }
+    async comparePasswords(toCompare){
+      return await bcrypt.compare(toCompare,this.password);
+    }
   };
   User.init({
       email: {
