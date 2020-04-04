@@ -1,7 +1,8 @@
 const express = require("express");
-const { user } = require('./models');
+const { user,token } = require('./models');
 const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
+
 
 
 router.post('/register', passwordValidate, async (req, res) => {
@@ -41,9 +42,12 @@ router.post('/login', async (req, res) => {
       }
     });
     if (!foundUser || await !foundUser.comparePasswords(req.body.password))
-      throw new Error("message");
+      throw new Error("Wrong credentials provided!");
 
-    res.send(foundUser);
+    const genToken = await foundUser.generateWebtoken();
+    const createdToken = await token.create({token:genToken,uid:foundUser.id});
+
+    res.send(createdToken);
 
   } catch (e) {
 
