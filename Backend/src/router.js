@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
       throw new Error("Wrong credentials provided!");
 
     const genToken = await foundUser.generateWebtoken();
-    const createdToken = await token.create({token:genToken,uid:foundUser.id});
+    const createdToken = await token.create({token:genToken,userId:foundUser.id});
 
     res.send(createdToken);
 

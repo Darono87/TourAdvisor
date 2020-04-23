@@ -14,13 +14,6 @@ const Token = (DB) =>{
       validate: {
         notNull: true
       }
-    },
-    uid:{
-      type: s.INTEGER,
-      references: {
-        model: User,
-        key: 'id'
-      }
     }
   }, { 
 
@@ -28,6 +21,8 @@ const Token = (DB) =>{
     modelName: 'token' 
 
   });
+
+  Token.belongsTo(User);
 
   return Token;
 }
