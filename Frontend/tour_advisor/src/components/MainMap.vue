@@ -25,9 +25,43 @@ export default {
     createMap(){
       
       this.map = new google.maps.Map(document.querySelector("#map"),{
-        center: {lat: 0, lng: 0},
-        zoom: 3
+        center: {lat: 50.122658, lng: 18.987061},
+        zoom: 7
       });
+
+      let marker = new google.maps.Marker({
+        position:{
+          lat: 50.122658,
+          lng: 18.987061
+        },
+        map: this.map,
+        label: "test label",
+        opacity: 0.6
+      })
+
+      let marker2 = new google.maps.Marker({
+        position:{
+          lat: 50.222658,
+          lng: 18.987061
+        },
+        map: this.map,
+        title: "test title",
+        icon: "hotel.svg"
+      })
+
+      let iconed = {
+        url: "dep.svg",
+        scaledSize: new google.maps.Size(25,25)
+      };
+
+      let marker3 = new google.maps.Marker({
+        position:{
+          lat: 50.122658,
+          lng: 19.007061
+        },
+        map: this.map,
+        icon: iconed
+      })
 
     }
   },
