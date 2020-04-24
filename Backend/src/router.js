@@ -1,5 +1,6 @@
 const express = require("express");
-const { user,token, place } = require('./models');
+const { user,token, place, DB } = require('./models');
+const Op = require("sequelize").Op;
 const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
 
@@ -55,6 +56,36 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
+/* get all places in a rect from (latStart,lngStart) to (latEnd,lngEnd). 
+Start is presumed to be smaller number: xxxStart < xxxEnd */
+
+router.get('/places/area',async(req,res)=>{
+
+  try{
+
+    let {latStart: s1,lngStart: s2,latEnd:e1,lngEnd:e2} = req.body;
+    let results = await place.findAll({where:{
+      
+      latitude: {
+        [Op.between]: [s1,e1]
+      },
+      longitude: {
+        [Op.between]: [s2,e2]
+      }
+
+    }});
+    
+    res.send(results);
+
+  } catch(e){
+
+    res.status(400).send(e);
+    
+  }
+  
+});
+
 /* get one place identified by ID - endpoint */
 router.get('/places/:id',async(req,res)=>{
   try{
@@ -62,12 +93,16 @@ router.get('/places/:id',async(req,res)=>{
     let results = await place.findAll({where: {
       id: ID
     }});
+    if(results.length == 0)
+      throw new Error("NF1");
     res.send(results);
   } catch(e){
     res.status(404).send("NF1");
   }
     
 });
+
+
 
 
 module.exports = router;
