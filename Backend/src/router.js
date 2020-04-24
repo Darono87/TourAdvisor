@@ -1,5 +1,5 @@
 const express = require("express");
-const { user,token } = require('./models');
+const { user,token, place } = require('./models');
 const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
 
@@ -54,5 +54,20 @@ router.post('/login', async (req, res) => {
     res.status(400).send(e);
   }
 });
+
+/* get one place identified by ID - endpoint */
+router.get('/places/:id',async(req,res)=>{
+  try{
+    let ID = req.params.id;
+    let results = await place.findAll({where: {
+      id: ID
+    }});
+    res.send(results);
+  } catch(e){
+    res.status(404).send("NF1");
+  }
+    
+});
+
 
 module.exports = router;
