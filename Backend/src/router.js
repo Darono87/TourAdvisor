@@ -3,8 +3,7 @@ const { user,token, place, DB } = require('./models');
 const Op = require("sequelize").Op;
 const passwordValidate = require("./validations/validatePassword");
 const router = express.Router();
-
-
+const AM = require("./middleware/authorize");
 
 router.post('/register', passwordValidate, async (req, res) => {
   try {
@@ -60,7 +59,7 @@ router.post('/login', async (req, res) => {
 /* get all places in a rect from (latStart,lngStart) to (latEnd,lngEnd). 
 Start is presumed to be smaller number: xxxStart < xxxEnd */
 
-router.get('/places/area',async(req,res)=>{
+router.get('/places/area', AM, async(req,res)=>{
 
   try{
 
@@ -81,13 +80,13 @@ router.get('/places/area',async(req,res)=>{
   } catch(e){
 
     res.status(400).send(e);
-    
+
   }
   
 });
 
 /* get one place identified by ID - endpoint */
-router.get('/places/:id',async(req,res)=>{
+router.get('/places/:id', AM, async(req,res)=>{
   try{
     let ID = req.params.id;
     let results = await place.findAll({where: {
