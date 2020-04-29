@@ -16,7 +16,7 @@ class User extends s.Model{
     const payload = {
       id: this.id
     }
-    return await jwt.sign(payload,process.env.JWTSECRET,{ expiresIn: 60 * 60 * 24 });
+    return await jwt.sign(payload,process.env.JWTSECRET,{ expiresIn: parseInt(process.env.LOGTIME) });
   }
 };
 
