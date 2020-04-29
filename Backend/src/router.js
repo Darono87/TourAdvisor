@@ -55,6 +55,34 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Logout, we expect that authorization went fine, so we have access to req.requesterID, req.tokenUsed
+
+router.post('/logout', AM, async(req,res)=> {
+
+  try{
+
+    //verified
+    const userId = req.requesterID;
+    const tokenUsed = req.tokenUsed;
+
+    const result = await token.destroy({
+      where: {
+        userId,
+        token: tokenUsed
+      }
+    });
+
+    console.log(result);
+    res.send(tokenUsed);
+
+  }catch(e){
+    
+    res.status(500).send(e);
+
+  }
+
+});
+
 
 /* get all places in a rect from (latStart,lngStart) to (latEnd,lngEnd). 
 Start is presumed to be smaller number: xxxStart < xxxEnd */
