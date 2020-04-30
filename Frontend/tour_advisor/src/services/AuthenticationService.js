@@ -7,6 +7,13 @@ export default {
   },
   login(data){
     return API().post("login",data);
+  },
+  logout(token){
+    return API().post("logout",null,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
 };

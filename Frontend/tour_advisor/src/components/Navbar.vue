@@ -12,23 +12,46 @@
           Map
         </v-btn>
       </router-link>
-      <router-link to = "/register">
+      <router-link v-if = "!$store.state.userToken" to = "/register">
         <v-btn class="nav-main-button"  color="light-green"> 
           Sign up
         </v-btn>
       </router-link>
-      <router-link to = "/login">
+      <router-link v-if = "!$store.state.userToken"  to = "/login">
         <v-btn class="nav-main-button" tile color="light-green lighten-2"> 
           Login
         </v-btn>
       </router-link>
+      <div class = "mx-4" v-if = "$store.state.userToken">
+        <v-btn  class=" mr-4 nav-main-button" @click="logout" color="light-green"> 
+          Logout
+        </v-btn>
+        <span class = "subtitle-1">Hello {{ $store.state.nickname }}!</span>
+      </div>
     </v-toolbar-items>
   </v-app-bar>
 </template>
 
 <script>
+
+import API from '../services/AuthenticationService';
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    async logout(){
+      try{
+        let result = await API.logout(this.$store.state.userToken);
+        
+        //logout was successful
+
+        this.$store.commit('logout');
+
+      } catch(e){
+        console.log(e);
+      }
+    }
+  }
 }
 </script>
 
