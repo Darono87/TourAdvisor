@@ -38,6 +38,7 @@ export default {
         let response = await API.login({
           password: this.password, email: this.email
         });
+        console.log(response);
         let validateToken = response.data.token;
         this.$store.commit('login',validateToken);
 

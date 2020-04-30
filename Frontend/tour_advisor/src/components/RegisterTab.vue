@@ -8,9 +8,16 @@
     <v-text-field type = 'text' v-model='email' label="E-Mail">
 
     </v-text-field>
+    <v-text-field type = 'text' v-model='nickname' label="Nickname">
+
+    </v-text-field>
     <v-text-field type = 'password' v-model='password' label="Password">
 
     </v-text-field>
+
+    <v-checkbox v-model="newsletter" label="I want to receive news about the product as well as notifications considering my account.">
+    </v-checkbox>
+
     <v-row justify = "center">
       <v-btn large color="light-green" class="sign-up-button" @click='register'> 
         Sign up
@@ -33,7 +40,9 @@ export default {
     return{
       email: '',
       password: '',
-      serverText: ''
+      nickname: '',
+      newsletter: false,
+      serverText: '',
     };
   },
   methods:{
@@ -41,7 +50,9 @@ export default {
       try{
         let message = await AS.register({
           email: this.email,
-          password: this.password
+          password: this.password,
+          nickname: this.nickname,
+          newsletter: this.newsletter
         });
         this.serverText = message.data.message;
       }catch(e){

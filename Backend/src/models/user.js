@@ -34,9 +34,22 @@ const UserInit = (DB) => {
         type: s.STRING,
         allowNull: false,
         validate: {
-          notNull: true,
           notEmpty: true
         }
+      },
+      nickname: {
+        type: s.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notEmpty: true,
+          len: [5,12],
+          is: /^[a-zA-Z0-9]+$/
+        }
+      },
+      newsletter: {
+        type: s.BOOLEAN,
+        defaultValue: false
       }
     }, { 
 

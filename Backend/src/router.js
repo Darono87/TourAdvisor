@@ -14,6 +14,7 @@ router.post('/register', passwordValidate, async (req, res) => {
       userData: newUser
     });
   } catch (e) {
+    console.log(e);
     switch (e.name) {
       case 'SequelizeValidationError':
         res.status(400).send({
@@ -47,7 +48,7 @@ router.post('/login', async (req, res) => {
     const genToken = await foundUser.generateWebtoken();
     const createdToken = await token.create({token:genToken,userId:foundUser.id});
 
-    res.send(createdToken);
+    res.send({nickname: foundUser.nickname,token: createdToken});
 
   } catch (e) {
 
