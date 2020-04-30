@@ -65,18 +65,51 @@ router.post('/logout', AM, async(req,res)=> {
     const userId = req.requesterID;
     const tokenUsed = req.tokenUsed;
 
+    // remove user's token and all expired tokens
     const result = await token.destroy({
       where: {
-        userId,
-        token: tokenUsed
+        [Op.or]:[
+          {
+            userId,
+            token: tokenUsed
+          },
+          {
+            createdAt: {
+              [Op.lt]: new Date(new Date() - process.env.LOGTIME)
+            }
+          }
+        ]
+        
       }
     });
 
-    console.log(result);
     res.send(tokenUsed);
 
   }catch(e){
     
+    res.status(500).send(e);
+
+  }
+
+});
+
+//Logout from every device currently connected
+
+router.post('/logout/all',AM,async(req,res)=>{
+
+  try{
+
+    const userId = req.requesterID;
+    const result = await token.destroy({
+      where: {
+        userId
+      }
+    });
+
+    res.send();
+
+  }catch(e){
+
     res.status(500).send(e);
 
   }
