@@ -2,8 +2,9 @@ import API from "./API"
 
 export default {
 
-  loadPointsOnArea(latStart, lngStart, latEnd, lngEnd) {
-    return API().get("places/area", {
+  async loadPointFromArea(latStart, lngStart, latEnd, lngEnd) {
+    
+    let points = await API().get("places/area", {
       params: {
         latStart,
         lngStart,
@@ -11,6 +12,10 @@ export default {
         lngEnd
       }
     });
+    return points.data.map((actual)=>{
+      return {lat: actual.latitude, lng: actual.longitude};
+    });
+
   }
 
 };

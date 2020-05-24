@@ -23,6 +23,20 @@ export default {
     mapReady: Promise
   },
   methods: {
+    async loadToMapFrom(latStart,lngStart,latEnd,lngEnd){
+
+      let points = await API.loadPointFromArea(latStart,lngStart,latEnd,lngEnd);
+      points.map((element)=>{
+        return new google.maps.Marker({
+          position:{
+            lat: element.lat,
+            lng: element.lng
+          },
+          map: this.map
+        })
+      });
+
+    },
     async createMap(){
       
       this.map = new google.maps.Map(document.querySelector("#map"),{
@@ -30,7 +44,8 @@ export default {
         zoom: 7
       });
 
-      console.log(await API.loadPointsOnArea(50,20,51,22));
+      await this.loadToMapFrom(50,20,55,23);
+
       // let marker = new google.maps.Marker({
       //   position:{
       //     lat: 50.122658,
