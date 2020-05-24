@@ -5,25 +5,27 @@
         <span class = "brown--text text--darken-1">Tour</span><span class = "green--text text--darken-2">Advisor</span>
       </v-toolbar-title>
     </router-link>
+    <router-link to = "/map">
+      <v-btn class="nav-main-button mx-4" v-if = "$store.state.userToken"  color="light-green darken-1"> 
+        <v-icon>add</v-icon>
+        Trip
+      </v-btn>
+    </router-link>
     <v-spacer></v-spacer>
     <v-toolbar-items class = "align-center">
-      <router-link to = "/map">
-        <v-btn class="nav-main-button"  color="light-green"> 
-          Map
-        </v-btn>
-      </router-link>
+      
       <router-link v-if = "!$store.state.userToken" to = "/register">
-        <v-btn class="nav-main-button"  color="light-green"> 
+        <v-btn class="nav-main-button"  color="light-green lighten-1"> 
           Sign up
         </v-btn>
       </router-link>
       <router-link v-if = "!$store.state.userToken"  to = "/login">
-        <v-btn class="nav-main-button" tile color="light-green lighten-2"> 
+        <v-btn class="nav-main-button" tile color="light-green lighten-1"> 
           Login
         </v-btn>
       </router-link>
       <div class = "mx-4" v-if = "$store.state.userToken">
-        <v-btn  class=" mr-4 nav-main-button" @click="logout" color="light-green"> 
+        <v-btn  class=" mr-4 nav-main-button" @click="logout" color="light-green lighten-1"> 
           Logout
         </v-btn>
         <span class = "subtitle-1">Hello {{ $store.state.nickname }}!</span>
