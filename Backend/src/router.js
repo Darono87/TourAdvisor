@@ -120,11 +120,11 @@ router.post('/logout/all',AM,async(req,res)=>{
 /* get all places in a rect from (latStart,lngStart) to (latEnd,lngEnd). 
 Start is presumed to be smaller number: xxxStart < xxxEnd */
 
-router.get('/places/area', AM, async(req,res)=>{
+router.get('/places/area', async(req,res)=>{
 
   try{
 
-    let {latStart: s1,lngStart: s2,latEnd:e1,lngEnd:e2} = req.body;
+    let {latStart: s1,lngStart: s2,latEnd:e1,lngEnd:e2} = req.query;
     let results = await place.findAll({where:{
       
       latitude: {
@@ -147,7 +147,7 @@ router.get('/places/area', AM, async(req,res)=>{
 });
 
 /* get one place identified by ID - endpoint */
-router.get('/places/:id', AM, async(req,res)=>{
+router.get('/places/:id', async(req,res)=>{
   try{
     let ID = req.params.id;
     let results = await place.findAll({where: {
