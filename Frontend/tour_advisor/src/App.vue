@@ -4,7 +4,7 @@
     <v-content class="grey lighten-5">
 
       <v-container fluid>
-        <router-view v-bind:map-ready="this.googleLoaded"></router-view>
+        <router-view></router-view>
       </v-container>
 
     </v-content>
@@ -18,7 +18,7 @@
 import RegisterTab from './components/RegisterTab.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
-import MainMap from './components/MainMap.vue'
+import MainMap from './components/MapSection.vue'
 import Navbar from './components/Navbar.vue'
 import LoginTab from './components/LoginTab.vue'
 import Welcome from './components/Welcome.vue'
@@ -38,25 +38,10 @@ const router = new VueRouter({
   routes
 })
 
-import config from "./config"
-
-const callbackName = "googleLoaded";
-const googlePromise = new Promise((resolve,reject)=>{
-  window[callbackName] = resolve;
-});
 
 export default {
   name: 'App',
-  data(){
-    return{
-      googleLoaded: googlePromise
-    }
-  },
   mounted() {
-
-    let googleMaps = document.createElement('script');
-    googleMaps.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${config.googleKey}&callback=${callbackName}`);
-    document.head.appendChild(googleMaps);
 
   },
   components: {

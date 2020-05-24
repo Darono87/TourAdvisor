@@ -1,7 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import config from "../config"
 
 Vue.use(Vuex)
+
+
+function googleHandler(){
+
+  const callbackName = "googleLoaded";
+  let googleMaps = document.createElement('script');
+  googleMaps.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${config.googleKey}&callback=${callbackName}`);
+  document.head.appendChild(googleMaps);
+
+  return new Promise((resolve,reject)=>{
+    window[callbackName] = resolve;
+  });
+}
 
 function determineLoggedState(){
   let timePassed = Date.now() - localStorage.getItem('tokenTime');
@@ -22,7 +36,8 @@ function determineLoggedState(){
 
 export default new Vuex.Store({
   state: {
-    ...determineLoggedState()
+    ...determineLoggedState(),
+    googleLoaded: googleHandler()
   },
   mutations: {
     login (state, loginData){

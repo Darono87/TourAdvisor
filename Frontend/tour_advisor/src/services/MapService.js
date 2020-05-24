@@ -2,7 +2,7 @@ import API from "./API"
 
 export default {
 
-  async loadPointFromArea(latStart, lngStart, latEnd, lngEnd) {
+  async loadPointsFromArea(latStart, lngStart, latEnd, lngEnd) {
     
     let points = await API().get("places/area", {
       params: {

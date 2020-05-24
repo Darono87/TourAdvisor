@@ -1,12 +1,6 @@
 <template>
-  <v-row tag="section" justify="center">
-    <v-card>
-      <v-card-title class = "headline" justify="center">Map Container</v-card-title>
-      <div id = "map">
-      </div>
-    </v-card>
-  </v-row>
-  
+  <section id = "map">
+  </section>
 </template>
 
 <script>
@@ -19,13 +13,10 @@ export default {
       map: null
     };
   },
-  props: {
-    mapReady: Promise
-  },
   methods: {
     async loadToMapFrom(latStart,lngStart,latEnd,lngEnd){
 
-      let points = await API.loadPointFromArea(latStart,lngStart,latEnd,lngEnd);
+      let points = await API.loadPointsFromArea(latStart,lngStart,latEnd,lngEnd);
       points.map((element)=>{
         return new google.maps.Marker({
           position:{
@@ -84,7 +75,7 @@ export default {
     
   },
   mounted() {
-    this.mapReady.then(()=>{
+    this.$store.state.googleLoaded.then(()=>{
       this.createMap();
     });
   }
